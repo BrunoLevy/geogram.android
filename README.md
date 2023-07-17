@@ -1,5 +1,6 @@
 # geogram.android
-Scripts and configuration files for compiling geogram applications under Android
+Scripts and configuration files for compiling geogram applications under Android.
+WIP, for now, just my notes.
 
 Installing Android development tools
 ------------------------------------
@@ -22,7 +23,11 @@ Installing Android development tools
 ```
   $ ./sdkmanager --sdk_root=/home/blevy/Programming/Android/ platform-tools
 ```  
-5) set `ANDROID_SDK_ROOT`
+5) install CMake 3.6.0
+```
+  $ ./sdkmanager --sdk_root=/home/blevy/Programming/Android/ --install "cmake;3.6.4111459"
+```
+6) set `ANDROID_SDK_ROOT`
 Add to `.bashrc`:
 ```
    export ANDROID_SDK_ROOT=<install directory>
@@ -57,3 +62,17 @@ When compiling the example app, there were two annoying warnings in CMake. How t
 - edit `app/src/main/cpp/CMakeLists.txt`, add `project(endless_tunnel)` right after `cmake_minimum_version`
 - edit `app/build.gradle`, in the second instance of `externalNativeBuild` (that is, *not* in `defaultConfig`),
   add `version "3.22.1"` right before `path`
+
+Morphing demo app to GeoBox
+---------------------------
+- prepend `$ANDROID_SDK_ROOT/cmake/3.6.4111459/bin` to `$PATH`
+- edit `app/build.gradle`
+   `namespace 'com.inria.pixel.geobox'`
+- edit `app/src/AndroidManifest.xml`
+   - permissions
+   - configChanges
+   - android.app.lib_name
+- `app/src/main/res`
+- `app/src/main/cpp`
+
+TODO: resurect my Android platform funcs for ImGui
