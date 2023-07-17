@@ -51,3 +51,9 @@ $ ./gradlew assembleDebug
 $ adb install app/build/outputs/apk/debug/app-debug.apk
 ```
 
+Fixing warnings in example app
+------------------------------
+When compiling the example app, there were two annoying warnings in CMake. How to fix them:
+- edit `app/src/main/cpp/CMakeLists.txt`, add `project(endless_tunnel)` right after `cmake_minimum_version`
+- edit `app/build.gradle`, in the second instance of `externalNativeBuild` (that is, *not* in `defaultConfig`),
+  add `version "3.22.1"` right before `path`
