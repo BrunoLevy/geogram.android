@@ -74,5 +74,14 @@ Morphing demo app to GeoBox
    - android.app.lib_name
 - `app/src/main/res`
 - `app/src/main/cpp`
+- openmp not directly supported by new SDK, need to say:
+```
+target_link_libraries(game -fopenmp -static-openmp)
+```
+- Current state:
+   - could compile a version with (legacy) geogram-android "grafted" to endless-tunnel, and it works with OpenMP
+   - does not work when using my `CMakeFile` directly, don't know why (TODO: understand)
 
-TODO: resurect my Android platform funcs for ImGui
+TODO: resurect my Android platform funcs for ImGui, compare with ImGui's version
+(mine has functions to translate keypress, mouse, stylus, multi-finger that may
+ not exist in ImGui, to be checked)
