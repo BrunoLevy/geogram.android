@@ -80,8 +80,17 @@ target_link_libraries(game -fopenmp -static-openmp)
 ```
 - Current state:
    - could compile a version with (legacy) geogram-android "grafted" to endless-tunnel, and it works with OpenMP
-   - does not work when using my `CMakeFile` directly, don't know why (TODO: understand)
+   - works also with my own CMakefile now
+   - lessons taken:
+      - To use open-mp, you need also to add `target_link_libraries(${CMAKE_PROJECT_NAME} -fopenmp -static-openmp)`
+      - make sure project name corresponds to dynamic lib loaded by app, declared in `AndroidManifest.xml`,
+        meta data `adroid.app.lib_name` (it was one of the problems that made me bang my head against the
+        wall)
 
 TODO: resurect my Android platform funcs for ImGui, compare with ImGui's version
 (mine has functions to translate keypress, mouse, stylus, multi-finger that may
  not exist in ImGui, to be checked)
+
+LINKS
+-----
+-[link 1](https://gist.github.com/phlummox/24b488fa8656cf925014639bab9977e5)
