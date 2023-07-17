@@ -86,10 +86,27 @@ target_link_libraries(game -fopenmp -static-openmp)
       - make sure project name corresponds to dynamic lib loaded by app, declared in `AndroidManifest.xml`,
         meta data `adroid.app.lib_name` (it was one of the problems that made me bang my head against the
         wall)
+      - if there is a `CMakeOptions.txt` in geogram that sets intel-only compile flags and sets GEOGRAM_LIB_ONLY to false,
+        it confuses Android build !
 
 TODO: resurect my Android platform funcs for ImGui, compare with ImGui's version
 (mine has functions to translate keypress, mouse, stylus, multi-finger that may
  not exist in ImGui, to be checked)
+
+Generate a keystore
+-------------------
+```
+$ keytool -genkey -v -keystore mykeystore.keystore -alias myalias -keyalg RSA -keysize 2048 -validity 10000
+```
+
+Sign an application
+-------------------
+```
+$ zipalign -v -p 4 app-release-unsigned.apk app-release-signed.apk
+$ apksigner sign --ks mykeystore.keystore app-release-signed.apk
+$ apksigner verivy app-release-signed.apk
+```
+(`zipalign` and `apksigner` are in `build-tools`).
 
 LINKS
 -----
