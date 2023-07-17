@@ -1,0 +1,2 @@
+#include <geogram/basic/android_wrapper.h>
+#include "../../../../../../../%APP_MAIN_SRC%"

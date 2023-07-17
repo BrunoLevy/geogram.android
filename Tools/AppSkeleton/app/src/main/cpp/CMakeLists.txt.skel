@@ -1,0 +1,51 @@
+cmake_minimum_required(VERSION 3.4.1)
+project(%APP_NAME%)
+
+# Set common compiler options
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11 -Wall -fopenmp")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fopenmp")
+
+# Geogram and its options
+set(VORPALINE_PLATFORM "Android-generic")
+set(GEOGRAM_SUB_BUILD ON) #to prevent config. variables from being overwritten
+set(GEOGRAM_LIB_ONLY ON)
+set(GEOGRAM_WITH_GRAPHICS ON)
+set(GEOGRAM_WITH_LEGACY_NUMERICS ON)
+set(GEOGRAM_WITH_TETGEN ON)
+set(GEOGRAM_WITH_TRIANGLE ON)
+set(GEOGRAM_WITH_LUA ON)
+set(GEOGRAM_WITH_EXPLORAGRAM ON)
+set(GEOGRAM_WITH_HLBFGS ON)
+set(GEOGRAM_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../../../../../)
+add_subdirectory(${GEOGRAM_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/geogram)
+
+# build native_app_glue as a static lib
+add_library(native_app_glue STATIC
+     ${ANDROID_NDK}/sources/android/native_app_glue/android_native_app_glue.c)
+
+# Export ANativeActivity_onCreate(),
+# Refer to: https://github.com/android-ndk/ndk/issues/381.
+set(CMAKE_SHARED_LINKER_FLAGS
+    "${CMAKE_SHARED_LINKER_FLAGS} -u ANativeActivity_onCreate")
+
+
+add_library(${CMAKE_PROJECT_NAME} SHARED android_main.cpp)
+
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+     ${ANDROID_NDK}/sources/android/native_app_glue
+     ${GEOGRAM_SOURCE_DIR}/src/lib
+)
+
+# add lib dependencies
+target_link_libraries(${CMAKE_PROJECT_NAME}
+     geogram_gfx
+     geogram
+     android
+     native_app_glue
+     EGL
+     GLESv3
+     log
+)
+
+target_link_libraries(${CMAKE_PROJECT_NAME} -fopenmp -static-openmp)
+
