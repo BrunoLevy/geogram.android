@@ -1,7 +1,6 @@
 # geogram.android
 Scripts and configuration files for compiling geogram applications under Android.
 
-![](https://github.com/BrunoLevy/geogram/wiki/pictures/geobox_android_v.png)
 ![](https://github.com/BrunoLevy/geogram/wiki/pictures/geobox_android_h.png)
 
 
