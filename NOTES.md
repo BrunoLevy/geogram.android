@@ -1,6 +1,5 @@
 # Notes on Android development
 
-[[https://raw.githubusercontent.com/wiki/BrunoLevy/geogram/pictures/geobox_android_h.png]]
 
 Installing CMake 3.6.0
 ----------------------
