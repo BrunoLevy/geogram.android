@@ -47,5 +47,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
      log
 )
 
+# Need to link openmp lib statically (it seems it is not
+# present in the system neither pulled by the packager)
 target_link_libraries(${CMAKE_PROJECT_NAME} -fopenmp -static-openmp)
 

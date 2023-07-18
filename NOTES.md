@@ -1,8 +1,8 @@
 # Notes on Android development
 
-
-Installing CMake 3.6.0
-----------------------
+How to installing CMake 3.6.0
+-----------------------------
+(not needed, but just in case...)
 ```
   $ ./sdkmanager --sdk_root=/home/blevy/Programming/Android/ --install "cmake;3.6.4111459"
 ```
@@ -14,9 +14,26 @@ When compiling the example app, there were two annoying warnings in CMake. How t
 - edit `app/build.gradle`, in the second instance of `externalNativeBuild` (that is, *not* in `defaultConfig`),
   add `version "3.22.1"` right before `path`
 
-Morphing demo app to GeoBox
----------------------------
-- prepend `$ANDROID_SDK_ROOT/cmake/3.6.4111459/bin` to `$PATH`
+What was blocking
+-----------------
+- Needed to rewrite gradle configuration files, several things have changed (I do not understand what).
+  Re-starting from a [NDK examples](https://github.com/android/ndk-samples.git) demo that resembles
+  what we want to do is a good idea (`endless-tunnel` is a pure NDK app, without any Java)
+- `app/build.gradle`, in the second instance of `externalNativeBuild` (that is, *not* in `defaultConfig`),
+  add `version "3.22.1"` right before `path`. Else it uses `CMake` from the NDK (version 3.18.1) that seems
+  to lack some features used by `geogram`
+- make sure the shared object name in `app/src/main/AndroidManifest.xml` and the actual built shared object
+  match
+- keep `android:exported="true"` in activity flags (still in `AndroidManifest.xml`). I set it to false, but
+  then when I click on the icon, it says "application not found"
+- if there is a `CMakeOptions.txt` in geogram that sets intel-only compile flags and sets `GEOGRAM_LIB_ONLY`
+  to false, it confuses Android build !
+
+
+Logbook: what I did to "morph" the `endless-tunnel` demo to GeoBox
+------------------------------------------------------------------
+- prepend `$ANDROID_SDK_ROOT/cmake/3.6.4111459/bin` to `$PATH` (not useful in fact if CMake version
+  set in `build.gradle`)
 - edit `app/build.gradle`
    `namespace 'com.inria.pixel.geobox'`
 - edit `app/src/AndroidManifest.xml`
@@ -29,20 +46,11 @@ Morphing demo app to GeoBox
 ```
 target_link_libraries(game -fopenmp -static-openmp)
 ```
-- Current state:
-   - could compile a version with (legacy) geogram-android "grafted" to endless-tunnel, and it works with OpenMP
-   - works also with my own CMakefile now
-   - lessons taken:
-      - To use open-mp, you need also to add `target_link_libraries(${CMAKE_PROJECT_NAME} -fopenmp -static-openmp)`
-      - make sure project name corresponds to dynamic lib loaded by app, declared in `AndroidManifest.xml`,
-        meta data `adroid.app.lib_name` (it was one of the problems that made me bang my head against the
-        wall)
-      - if there is a `CMakeOptions.txt` in geogram that sets intel-only compile flags and sets GEOGRAM_LIB_ONLY to false,
-        it confuses Android build !
 
-TODO: resurect my Android platform funcs for ImGui, compare with ImGui's version
-(mine has functions to translate keypress, mouse, stylus, multi-finger that may
- not exist in ImGui, to be checked)
+TODO: for now, it is using my own `imgui_impl_android.h/.cpp` in `geogram_gfx/ImGui_ext`. Try
+to use the one that is now shipped with `imgui` (or at least, start by copying it, and insert
+the new stuff in it, that is, function to translate keypress, mouse, stylus, multi-finger that may
+not exist in ImGui, to be checked.
 
 LINKS
 -----
