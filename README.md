@@ -6,7 +6,7 @@ Scripts and configuration files for compiling geogram applications under Android
 
 STEP 1: install Android toolchain
 ---------------------------------
-Documentation [here](TOOLCHAIN.md)
+Documentation [here](DOCS/TOOLCHAIN.md)
 
 STEP 2: get geogram sources
 ---------------------------
@@ -67,4 +67,5 @@ $ adb install -r app/build/outputs/apk/release/app-release-signed.apk
 
 Links
 -----
-[Notes/logbook](NOTES.md)
+- geogram for android [architectural notes](DOCS/geogram_android.md)
+- my (sanitized) [logbook](DOCS/NOTES.md)
