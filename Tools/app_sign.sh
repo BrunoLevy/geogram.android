@@ -6,9 +6,9 @@ TOOLS_PATH=/home/blevy/Programming/Android/build-tools/30.0.3
 SOURCE=app/build/outputs/apk/release/app-release-unsigned.apk
 TARGET=app/build/outputs/apk/release/app-release-signed.apk
 
-if [ ! -f $TARGET ]; then
+if [ ! -f $SOURCE ]; then
 cat << END
-      Did not find target ($TARGET)
+      Did not find target ($SOURCE)
       app_sign.sh must be run in app source directory
 END
    exit
