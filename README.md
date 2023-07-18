@@ -10,7 +10,7 @@ STEP 2: get geogram sources
 ```
 $ git clone --recurse-submodules https://github.com/BrunoLevy/geogram.git
 ```
-Optionnal: get [exploragram](https://github.com/BrunoLevy/exploragram) sources (optimal transport, basic hex meshing)
+Optional: get [exploragram](https://github.com/BrunoLevy/exploragram) sources (optimal transport, basic hex meshing)
 ```
 $ cd geogram/src/lib
 $ git clone https://github.com/BrunoLevy/exploragram.git
@@ -27,6 +27,7 @@ STEP 4: generate android buildfiles for an app
 ```
 $ geogram.android/Tools/app_make.sh geogram/src/bin/geobox/main.cpp
 ```
+Files are generated in `geogram.android/Apps/geobox`
 
 STEP 5: compile app in debug mode and install on device
 -------------------------------------------------------
@@ -36,6 +37,7 @@ $ cd geogram.android/Apps/geobox
 $ ./gradlew assembleDebug
 ```
 Plug the phone on USB
+Install
 ```
 $ adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
@@ -55,10 +57,11 @@ directory.
 $ ../../Tools/app_sign.sh
 ```
 Plug the phone on USB
+Install
 ```
 $ adb install -r app/build/outputs/apk/release/app-release-signed.apk
 ```
 
 Links
 -----
-[Notes/logbook](NODES.md)
+[Notes/logbook](NOTES.md)
