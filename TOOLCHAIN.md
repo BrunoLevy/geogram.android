@@ -21,11 +21,7 @@ STEP 1: Installing Android development tools
 ```
   $ ./sdkmanager --sdk_root=/home/blevy/Programming/Android/ platform-tools
 ```  
-5) install CMake 3.6.0
-```
-  $ ./sdkmanager --sdk_root=/home/blevy/Programming/Android/ --install "cmake;3.6.4111459"
-```
-6) set `ANDROID_SDK_ROOT`
+5) set `ANDROID_SDK_ROOT`
 Add to `.bashrc`:
 ```
    export ANDROID_SDK_ROOT=<install directory>
@@ -60,8 +56,8 @@ STEP 4: Generate a keystore
 $ keytool -genkey -v -keystore mykeystore.keystore -alias myalias -keyalg RSA -keysize 2048 -validity 10000
 ```
 
-How to sign an application
---------------------------
+How to sign an application (necessary to install an app compiled in release mode)
+---------------------------------------------------------------------------------
 ```
 $ zipalign -v -p 4 app-release-unsigned.apk app-release-signed.apk
 $ apksigner sign --ks mykeystore.keystore app-release-signed.apk

@@ -1,5 +1,11 @@
 # Notes on Android development
 
+Installing CMake 3.6.0
+----------------------
+```
+  $ ./sdkmanager --sdk_root=/home/blevy/Programming/Android/ --install "cmake;3.6.4111459"
+```
+
 Fixing warnings in example app
 ------------------------------
 When compiling the example app, there were two annoying warnings in CMake. How to fix them:
