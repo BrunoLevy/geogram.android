@@ -19,28 +19,30 @@ mkdir -p $APP_DIR/app/src/main/res/mipmap-xhdpi
 mkdir -p $APP_DIR/app/src/main/res/mipmap-hdpi
 mkdir -p $APP_DIR/app/src/main/res/mipmap-mdpi
 
-convert $SCRIPT_DIR/geogram.png \
+ICON1=$APP_DIR/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+
+cp $SCRIPT_DIR/geogram.png $ICON1
+
+convert $ICON1 \
    -font DejaVu-Sans-Bold \
    -gravity center \
    -pointsize 70 \
    -stroke  none      -fill white       -annotate 0 $APP_LABEL \
    -stroke  '#000094' -strokewidth 10   -annotate 0 $APP_LABEL \
    -stroke  '#000094' -strokewidth 2    -annotate 0 $APP_LABEL \
-   $APP_DIR/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+   $ICON1
 
-convert -modulate 100,100,$APP_HUE \
-	$APP_DIR/app/src/main/res/mipmap-xxhdpi/ic_launcher.png \
-	$APP_DIR/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+convert -modulate 100,100,$APP_HUE $ICON1 $ICON1
 
-convert $APP_DIR/app/src/main/res/mipmap-xxhdpi/ic_launcher.png \
+convert $ICON1 \
         -geometry 48x48 \
 	$APP_DIR/app/src/main/res/mipmap-mdpi/ic_launcher.png
 
-convert $APP_DIR/app/src/main/res/mipmap-xxhdpi/ic_launcher.png \
+convert $ICON1 \
         -geometry 72x72 \
 	$APP_DIR/app/src/main/res/mipmap-hdpi/ic_launcher.png
 
-convert $APP_DIR/app/src/main/res/mipmap-xxhdpi/ic_launcher.png \
+convert $ICON1 \
         -geometry 96x96 \
 	$APP_DIR/app/src/main/res/mipmap-xhdpi/ic_launcher.png
 
