@@ -21,7 +21,8 @@ What was blocking
   what we want to do is a good idea (`endless-tunnel` is a pure NDK app, without any Java)
 - `app/build.gradle`, in the second instance of `externalNativeBuild` (that is, *not* in `defaultConfig`),
   add `version "3.22.1"` right before `path`. Else it uses `CMake` from the NDK (version 3.18.1) that seems
-  to lack some features used by `geogram`
+  to lack some features used by `geogram`. Well in fact, not really a problem it seems, it is rather a
+  question of warnings.
 - make sure the shared object name in `app/src/main/AndroidManifest.xml` and the actual built shared object
   match
 - keep `android:exported="true"` in activity flags (still in `AndroidManifest.xml`). I set it to false, but
@@ -54,4 +55,4 @@ not exist in ImGui, to be checked.
 
 LINKS
 -----
--[link 1](https://gist.github.com/phlummox/24b488fa8656cf925014639bab9977e5)
+- [Android development command line cheatsheet](https://gist.github.com/phlummox/24b488fa8656cf925014639bab9977e5)
