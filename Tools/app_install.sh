@@ -64,7 +64,7 @@ if [ -z $NO_INSTALL ]; then
         echo "Did not find APK:$APK"
         exit
     fi
-
+    echo installing $APK
     adb install -r $APK
 fi
 

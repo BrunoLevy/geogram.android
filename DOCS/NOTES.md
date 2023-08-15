@@ -48,10 +48,10 @@ Logbook: what I did to "morph" the `endless-tunnel` demo to GeoBox
 target_link_libraries(game -fopenmp -static-openmp)
 ```
 
-TODO: for now, it is using my own `imgui_impl_android.h/.cpp` in `geogram_gfx/ImGui_ext`. Try
-to use the one that is now shipped with `imgui` (or at least, start by copying it, and insert
-the new stuff in it, that is, function to translate keypress, mouse, stylus, multi-finger that may
-not exist in ImGui, to be checked.
+For now, it is using my own `imgui_impl_android.h/.cpp` in `geogram_gfx/imgui_ext`,
+that is derived from the one that is now shipped with `imgui`, but with 
+some new stuff in it, that is, function to translate keypress, mouse, stylus, multi-finger that do
+not exist in ImGui. TODO: submit a PR to imgui.
 
 LINKS
 -----
