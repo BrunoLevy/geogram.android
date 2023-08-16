@@ -29,6 +29,7 @@ What was blocking
   then when I click on the icon, it says "application not found"
 - if there is a `CMakeOptions.txt` in geogram that sets intel-only compile flags and sets `GEOGRAM_LIB_ONLY`
   to false, it confuses Android build !
+- the OpenMP runtime library needs to be linked explicitly: `target_link_libraries(${CMAKE_PROJECT_NAME} -fopenmp -static-openmp)`
 
 
 Logbook: what I did to "morph" the `endless-tunnel` demo to GeoBox
