@@ -65,6 +65,11 @@ Install
 $ adb install -r app/build/outputs/apk/release/app-release-signed.apk
 ```
 
+Privacy policy (required by Android app store)
+----------------------------------------------
+Geogram applications do not collect nor share any user data.
+
+
 Links
 -----
 - geogram for android [architectural notes](DOCS/geogram_android.md)

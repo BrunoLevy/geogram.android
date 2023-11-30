@@ -37,11 +37,10 @@ Graphic user interface
 [Dear Imgui](https://github.com/ocornut/imgui) is fantastically well written, with a clear separation between
 the logic, the rendering code, and some OS-specific functions. Android supports OpenGL ES 3, so there is already
 rendering code for ImGui. For the other OS-specific functions, there is now a `imgui_impl_android.h/.cpp` in
-the backends shipped with ImGui. At the time I started, it did not exist, so mine is in
-`geogram/src/lib/geogram_gfx/ImGui_ext`. It has a couple of additional function to support multiple fingers,
+the backends shipped with ImGui. My (slightly modified) version is in
+`geogram/src/lib/geogram_gfx/imgui_ext`. It has a couple of additional function to support multiple fingers,
 stylus, keyboard, and to properly convert the typed character using the keymap (which uses one of the
-JNI functions in `android_utils` mentioned in the previous section). TODO: make my updates compatible with
-the official backend.
+JNI functions in `android_utils` mentioned in the previous section). 
 
 Since a phone usually has a small screen with a (ridiculously high) resolution, the default setting and layout
 of the GUI components are completely different as compared to geogram "desktop mode". It uses two functionalities
